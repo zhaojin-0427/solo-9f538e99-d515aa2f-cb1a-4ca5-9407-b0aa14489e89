@@ -1,0 +1,18 @@
+services:
+  api:
+    build: .
+    container_name: allergen-hold-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - kitchen_data:/data
+    environment:
+      DB_PATH: /data/kitchen.db
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/status')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  kitchen_data:
