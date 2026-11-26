@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Live HTTP smoke run: cross-line rework + cleaning correction.
+# Usage: BASE=http://127.0.0.1:8000 bash scripts/smoke.sh
 set -euo pipefail
-B=http://127.0.0.1:8077
+B=${BASE:-http://127.0.0.1:8077}
 j() { python3 -m json.tool --no-ensure-ascii 2>/dev/null || cat; }
 
 echo '== 1. 原料批次过敏原 =='
